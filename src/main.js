@@ -3,20 +3,22 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
-import vuex from "vuex";
+
 import store from "./store";
 import ElementUI from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
-import 'normalize.css'
-
+import "./style";
+import util from "./utils/index";
+import { parseTime, formatDateEng } from "../filters";
+Vue.prototype.parseTime = parseTime;
+Vue.prototype.formatDateEng = formatDateEng;
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 
+Vue.prototype.$axios = util.axios;
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
   router,
-  vuex,
   store,
   components: { App },
   template: "<App/>"

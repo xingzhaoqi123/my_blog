@@ -1,9 +1,9 @@
 const getters = {
   getTouxiang: state => state.touxiang,
   getMenus: state => state.menus,
-  getNavTop : state => state.NavTop,
-  getNavLeft :state => state.NavLeft,
-
+  getNavTop: state => state.NavTop,
+  getNavLeft: state => state.NavLeft,
+  getBGC: state => state.gloablColor
 };
 export default getters;
 

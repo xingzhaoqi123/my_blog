@@ -1,5 +1,6 @@
 const state = {
   touxiang: "http://ph4x1bazq.bkt.clouddn.com/%E4%BA%8C%E7%8B%97.jpg",
+  gloablColor:'#202020',
   menus: [
     // {
     //   name: 'article',

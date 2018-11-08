@@ -33,14 +33,15 @@ export default {
 };
 </script>
 
-<style lang="less">
+
+<style lang="less" scoped>
 .self {
     position: fixed;
     width: 100%;
     height: 100%;
     background-image: url("http://ph4x1bazq.bkt.clouddn.com/50e412cf4b1b704f44ab8aa9297ed1dc.jpg");
     background-position: 50%;
-    opacity: 0.5;
+    opacity: 0.7;
     background-repeat: no-repeat;
     background-size: cover;
 }

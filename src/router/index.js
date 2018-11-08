@@ -17,12 +17,12 @@ export default new Router({
       component: components.home
     },
     {
-      path: "/blogList",
+      path: "/blog",
       title: "博客列表",
       component: components.blogList
     },
     {
-      path: "/article/:id",
+      path: "/blog/article/:id",
       title: "博客页",
       component: components.article
     }

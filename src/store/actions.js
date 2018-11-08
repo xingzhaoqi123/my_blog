@@ -6,6 +6,9 @@ const actions = {
   // 改变nav
   setNav: ({ commit, state }, payload) => {
     commit("setNav", payload);
+  },
+  setBGC: ({ commit, state }, payload) => {
+    commit("SET_BGC", payload);
   }
 };
 export default actions;

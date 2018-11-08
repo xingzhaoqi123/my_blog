@@ -1,15 +1,15 @@
 <template>
     <section>
-        <nav id="slider-bar" ref="slider">
+        <nav id="slider-bar" ref="slider" :style="{backgroundColor:`${$store.state.gloablColor}`}">
             <div class="slider-content">
                 <div class="profile">
-                    <a href="#" target="_blank" class="my-img">
+                    <a href='#' target="_blank" class="my-img">
                         <img :src="touxiang" alt="goodboy blog">
                     </a>
                     <span>行先生</span>
                 </div>
                 <ul class="menus">
-                    <router-link :to="{path:'/blogList'}">
+                    <router-link :to="{path:'/blog'}">
                         <li class="menu">
                             <a href="#" target="_blank">
                                 <i class="icon-index iconfont"></i>
@@ -25,8 +25,11 @@
                     </li>
                 </ul>
             </div>
+            <div class="block select_color">
+                <el-color-picker v-model="color"></el-color-picker>
+            </div>
         </nav>
-        <nav class="navTop">
+        <nav class="navTop" :style="{backgroundColor:`${$store.state.gloablColor}`}">
             <p>
                 <i class="iconfont icon-menu" @click="open"></i>
                 <router-link :to="{path: '/'}" exact><span>行先生</span></router-link>
@@ -37,9 +40,11 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
     data() {
         return {
+            color: "#409EFF",
             now: 0,
             drop: false
         };
@@ -71,6 +76,11 @@ export default {
                 }
             });
         });
+    },
+    watch: {
+        color: function(Val, oldVal) {
+            this.$store.dispatch("setBGC", Val);
+        }
     }
 };
 </script>
@@ -83,7 +93,7 @@ export default {
     position: fixed;
     left: 0;
     top: 0;
-    background-color: #202020;
+    // background-color: #202020;
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 1;
@@ -106,7 +116,11 @@ export default {
         background-color: rgba(235, 87, 86, 0.73);
         border-radius: 4px;
     }
-
+    .select_color {
+        position: absolute;
+        right: 20px;
+        margin: 40px;
+    }
     .profile {
         padding-top: 40px;
         padding-bottom: 10px;
@@ -213,7 +227,7 @@ export default {
         position: fixed;
         width: 100%;
         height: 60px;
-        background-color: #202020;
+        // background-color: #202020;
         z-index: 9999;
 
         p {
