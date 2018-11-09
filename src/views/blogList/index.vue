@@ -1,7 +1,7 @@
 <template>
     <div class=" blogList">
         <div class="blog_con">
-            <div class="box_blog">
+            <div class="box_blog" v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
                 <ul class="list fl-column">
                     <li v-for="n in List">
                         <span class="date">{{formatDateEng(n.updateTime)}}</span>
@@ -20,6 +20,7 @@
 export default {
     data() {
         return {
+            loading: false,
             List: [],
             page_size: 8,
             total: 0,
@@ -35,6 +36,7 @@ export default {
             });
         },
         getBlogList() {
+            this.loading = true;
             let params = {
                 page: this.pageindex,
                 page_size: this.page_size
@@ -43,6 +45,7 @@ export default {
                 if (res.code == 200) {
                     this.List = res.data;
                     this.getTotal();
+                    this.loading = false;
                 } else {
                     this.$message.error(res.msg);
                 }

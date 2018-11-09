@@ -1,12 +1,14 @@
 <template>
     <div class="article">
         <div class="blog_con">
-            <div class="box_article">
+            <div class="box_article" v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.8)">
                 <div class="post">
-                    <div class="sourse "><span>{{blog.sourse == 1?'原':(blog.sourse == 2 ?'转':'翻')}}</span></div>
+                    <div class="sourse"><span>{{blog.sourse == 1?'原':(blog.sourse == 2 ?'转':'翻')}}</span></div>
+
                     <h1>{{blog.title}}</h1>
-                    <h3 class="date">{{parseTime(blog.updateTime)}}&nbsp;&nbsp;&nbsp;&nbsp;浏览次数:{{1111}}次
+                    <h3 class="date" v-if="blog.updateTime">{{parseTime(blog.updateTime)}}&nbsp;&nbsp;&nbsp;&nbsp;浏览次数:{{1111}}次
                         <span class="author" v-if="blog.author">作者：{{blog.author.nickname}}</span>
+                        <div class="blogType" v-for="(item,index) in blog.blogTypes"><span>{{item}}</span></div>
                     </h3>
 
                     <div class="ql-container ql-snow">
@@ -31,18 +33,21 @@
 export default {
     data() {
         return {
+            loading: false,
             href: "",
             id: "",
-            blog: {}
+            blog: {},
         };
     },
     methods: {
         getBlog() {
+            this.loading = true;
             this.$axios
                 .get(`/blog/person/${this.id}`)
                 .then(res => {
                     if (res.code == 200) {
                         this.blog = res.data;
+                        this.loading = false;
                     } else {
                         this.$message.error(res.msg);
                     }
@@ -144,6 +149,22 @@ export default {
         font-size: 32px;
         margin: 0 0 45px;
         letter-spacing: 1px;
+    }
+    .blogType {
+        float: right;
+        margin-right: 10px;
+        display: flex;
+        line-height: 20px;
+        span {
+
+            margin: 0 10px;
+            width: 90px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            background-color: #B6B8B6;
+            border-radius: 3px;
+        }
     }
     .author {
         float: right;

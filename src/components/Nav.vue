@@ -117,9 +117,9 @@ export default {
         border-radius: 4px;
     }
     .select_color {
-        position: absolute;
-        right: 20px;
-        margin: 40px;
+        position: relative;
+        margin: 20px 100px;
+        // margin: 40px;
     }
     .profile {
         padding-top: 40px;
